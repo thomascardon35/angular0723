@@ -1,0 +1,31 @@
+<!-- <h1>Description de {{product.name}}</h1>
+<p>
+  le produit est un {{ product.category }} dont la description est {{product.description}}.
+  le produit est {{ product.active === true ? 'disponible' : 'non disponible'}}
+</p>
+
+<p>
+  la promo est de {{product.promo}}
+</p>
+
+<select [(ngModel)]="theColor" id="">
+  <option value="red">red</option>
+  <option value="green">green</option>
+  <option value="blue">blue</option>
+</select>
+
+<ul [style.color]="theColor">
+  <li>{{product.id }}</li>
+  <li>{{product.name }}</li>
+  <li>{{ product.active }}</li>
+  <li>{{product.category }}</li>
+  <li>{{product.description }}</li>
+  <li>{{product.promo }}</li>
+</ul>
+
+
+<button (click)="toggleActive()"> Toggle </button> -->
+
+<h1>Products Management </h1>
+<app-menu></app-menu>
+<app-product-list></app-product-list>
