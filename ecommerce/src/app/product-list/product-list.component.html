@@ -1,3 +1,5 @@
 <h2>Products list</h2>
-<app-product [product]="product1"></app-product>
-<app-product [product]="product2"></app-product>
+<input type="text" [(ngModel)]="filteringStr">
+<div  *ngIf="products != []">
+    <app-product *ngFor="let oneProduct of getProductsFiltered()" [product]="oneProduct"></app-product>
+</div>

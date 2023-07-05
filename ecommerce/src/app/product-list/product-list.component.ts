@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../model/product.model';
+import { ProductService } from '../product.service';
+import { HttpClient } from '@angular/common/http';
+import { HttpProductService } from '../http-product.service';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
 
-  product1 : Product = {
+  product : Product = {
     id : 123,
     category : "véhicules",
     price : 6999,
@@ -18,14 +21,32 @@ export class ProductListComponent {
     active : true,
   }
 
-  product2 : Product = {
-    id : 124,
-    category : "véhicules",
-    price : 13999,
-    promo : .1,
-    name : "voiture",
-    description : "véhicule 4 roues",
-    active : true,
+  constructor(private productService : HttpProductService){
   }
 
+
+  
+  selectedProduct: Product | undefined
+  
+  filteringStr = ''
+
+  products : Product[] = [];
+
+
+ngOnInit(): void {
+  // console.log(this.productService.addProduct(this.product)
+  //   .subscribe());
+
+  this.productService.findAll()
+    .subscribe(products => this.products = products);
+}
+
+
+receiveSelectedProduct(product: Product){
+  this.selectedProduct = product
+}
+
+getProductsFiltered(): Product[]{
+  return this.products.filter(prod => prod.name.toLowerCase().includes(this.filteringStr.toLowerCase()))
+}
 }
